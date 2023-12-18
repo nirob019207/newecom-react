@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 function Header() {
+    const item = useSelector(state=>state.order.items)
   return (
     <header class="bg-white">
     <div class="container mx-auto px-6 py-3">
@@ -17,7 +19,7 @@ function Header() {
             </div>
             <div class="flex items-center justify-end w-full">
          
-           <span className='-top-5 text-lg  bg-red-700 text-center left-[4rem] text-white  h-8 w-8 rounded-full relative'>2</span>
+           <span className='-top-5 text-lg  bg-red-700 text-center left-[4rem] text-white  h-8 w-8 rounded-full relative'>{item.length}</span>
             <button className=" top-[4rem] right-2 p-3  rounded-full bg-blue-600 text-white hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
             
              <FaShoppingCart className="h-6 w-6" />

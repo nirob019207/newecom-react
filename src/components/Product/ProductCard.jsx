@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-const ProductCard = ({ title, price, image }) => {
+const ProductCard = ({ title, price, image,handleAddToCart,id }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -27,7 +27,7 @@ const ProductCard = ({ title, price, image }) => {
           <span className="text-gray-500 mt-2">${price}</span>
         </div>
         <div className='py-3'>
-          <button className='bg-blue-600 text-white py-1 rounded px-2'>Add to Cart</button>
+          <button className='bg-blue-600 text-white py-1 rounded px-2' onClick={()=>handleAddToCart(id)}>Add to Cart</button>
         </div>
       </div>
     </div>
