@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaShoppingCart } from 'react-icons/fa';
+
 
 const ProductCard = ({ title, price, image }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -19,9 +19,7 @@ const ProductCard = ({ title, price, image }) => {
             </button>
           </div>
         )}
-        <button className="absolute top-2 right-2 p-2 rounded-full bg-blue-600 text-white hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-          <FaShoppingCart className="h-5 w-5" />
-        </button>
+       
       </div>
       <div className="px-5 py-5 flex justify-between">
         <div>
