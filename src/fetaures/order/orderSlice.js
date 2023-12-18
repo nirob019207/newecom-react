@@ -1,19 +1,29 @@
+// orderSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     items: [],
+    isCartOpen: false,
 };
 
 export const orderSlice = createSlice({
-    name: 'items',
+    name: 'order',
     initialState,
     reducers: {
-        // showItem: (state) => state,
         addItem: (state, action) => {
             state.items.push(action.payload);
+        },
+        removeItem: (state, action) => {
+            state.items = state.items.filter(item => item.id !== action.payload);
+        },
+        clearItems: (state) => {
+            state.items = [];
+        },
+        toggleCart: (state) => {
+            state.isCartOpen = !state.isCartOpen;
         },
     },
 });
 
-export const { showItem, addItem } = orderSlice.actions;
+export const { addItem, removeItem, clearItems, toggleCart } = orderSlice.actions;
 export default orderSlice.reducer;

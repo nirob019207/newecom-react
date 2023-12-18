@@ -1,9 +1,24 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { toggleCart } from '../../fetaures/order/orderSlice';
+import { useSelector,useDispatch } from 'react-redux';
 function Header() {
-    const item = useSelector(state=>state.order.items)
+    const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const item = useSelector(state => state.order.items);
+  const isCartOpen = useSelector(state => state.order.isCartOpen);
+
+  console.log('isCartOpen:', isCartOpen);
+
+  const handleToggleCart = () => {
+    dispatch(toggleCart());
+
+    // If the cart is open, navigate to the /cart route
+    if (!isCartOpen) {
+      navigate('/cart');
+    }
+  };
   return (
     <header class="bg-white">
     <div class="container mx-auto px-6 py-3">
@@ -20,13 +35,12 @@ function Header() {
             <div class="flex items-center justify-end w-full">
          
            <span className='-top-5 text-lg  bg-red-700 text-center left-[4rem] text-white  h-8 w-8 rounded-full relative'>{item.length}</span>
-            <button className=" top-[4rem] right-2 p-3  rounded-full bg-blue-600 text-white hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-            
-             <FaShoppingCart className="h-6 w-6" />
-             
-          </button>
-         
-
+           <button
+          className="top-[4rem] right-2 p-3 rounded-full bg-blue-600 text-white hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
+          onClick={handleToggleCart}
+        >
+          <FaShoppingCart className="h-6 w-6" />
+        </button>
                 <div class="flex sm:hidden">
                     <button  type="button" class="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500" aria-label="toggle menu">
                         <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
@@ -40,6 +54,7 @@ function Header() {
             <div class="flex flex-col sm:flex-row">
             <Link to="/" className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">Home</Link>
             <Link to="/products" className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">Products</Link>
+            <Link to="/cart" className="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0">cart</Link>
 
             </div>
         </nav>

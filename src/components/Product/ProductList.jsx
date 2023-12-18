@@ -22,9 +22,7 @@ const ProductList = () => {
         ))}
       </div>
       <div>
-        {items.map((i)=>(
-          <p>{i.title}</p>
-        ))}
+      
       </div>
     </div>
   );
