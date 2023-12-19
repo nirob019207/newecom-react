@@ -28,7 +28,7 @@ const Cart = () => {
                     <span className=''>Select All ({items.length} items)</span>
                 </div>
                 <div className='text-lg text-gray-700 flex gap-4'>
-                    <span>Your Total : {calculateTotal()} tk</span>
+                    <span>Your Total : {calculateTotal()} Tk</span>
                 </div>
             </div>
 
