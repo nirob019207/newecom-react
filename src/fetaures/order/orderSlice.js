@@ -22,8 +22,31 @@ export const orderSlice = createSlice({
         toggleCart: (state) => {
             state.isCartOpen = !state.isCartOpen;
         },
+        increment: (state, action) => {
+            const itemId = action.payload; // Assuming payload contains the item ID
+            
+            // Find the item in the items array
+            const itemToUpdate = state.items.find(item => item.id === itemId);
+
+            if (itemToUpdate.order<itemToUpdate.total) {
+                // Increment the 'order' property
+                itemToUpdate.order += 1;
+            }
+        },
+        decrement: (state, action) => {
+            const itemId = action.payload; // Assuming payload contains the item ID
+            
+            // Find the item in the items array
+            const itemToUpdate = state.items.find(item => item.id === itemId);
+
+            if (itemToUpdate.order>1) {
+                // Increment the 'order' property
+                itemToUpdate.order -= 1;
+            }
+          
+        }
     },
 });
 
-export const { addItem, removeItem, clearItems, toggleCart } = orderSlice.actions;
+export const { addItem, removeItem, clearItems, toggleCart,increment,decrement } = orderSlice.actions;
 export default orderSlice.reducer;

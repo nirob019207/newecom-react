@@ -18,6 +18,9 @@ function Header() {
     if (!isCartOpen) {
       navigate('/cart');
     }
+    else {
+        navigate('/products')
+    }
   };
   return (
     <header class="bg-white">

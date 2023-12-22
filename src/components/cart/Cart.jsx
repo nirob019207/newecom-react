@@ -1,13 +1,13 @@
 // Cart.jsx
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearItems, removeItem } from '../../fetaures/order/orderSlice';
+import { clearItems, increment, removeItem ,decrement} from '../../fetaures/order/orderSlice';
 
 const Cart = () => {
     const dispatch = useDispatch();
     const items = useSelector(state => state.order.items);
     const isCartOpen = useSelector(state => state.order.isCartOpen);
-
+    
     const handleClearCart = () => {
         dispatch(clearItems());
     };
@@ -15,9 +15,15 @@ const Cart = () => {
     const handleRemoveItem = (id) => {
         dispatch(removeItem(id));
     };
+    const handleIncrement = (id) =>{
+        dispatch(increment(id))
+    }
+    const handleDecrement = (id) =>{
+        dispatch(decrement(id))
+    }
 
     const calculateTotal = () => {
-        return items.reduce((total, item) => total + item.price, 0);
+        return items.reduce((total, item) => total + item.price*item.order, 0);
     };
 
     return (
@@ -48,9 +54,9 @@ const Cart = () => {
                     </div>
 
                     <div className='bg-white shadow-lg flex divide-x w-48 text-2xl divide-solid justify-center items-center'>
-         <button className='p-3 bg-gray-100 w-16'>-</button>
-         <span className='p-3 bg-gray-100 w-16 text-center'>0</span>
-         <button className='p-3 bg-gray-100 w-16'>+</button>
+         <button className={`p-3 bg-gray-100 w-16`} onClick={()=>handleDecrement(item.id)}>-</button>
+         <span className='p-3 bg-gray-100 w-16 text-center'>{item.order}</span>
+         <button className='p-3 bg-gray-100 w-16' onClick={()=>handleIncrement(item.id)}>+</button>
         </div>
 
                     <div className='mr-4'>

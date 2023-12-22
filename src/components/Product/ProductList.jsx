@@ -10,7 +10,11 @@ const ProductList = () => {
    console.log(items);
   const handleAddToCart = (id) =>{  
     const order = products.find((item)=>item.id === id) 
-    dispatch(addItem(order)) 
+     const duplicate = items.find((item)=> item.id===order.id)
+     if(!duplicate) {
+      dispatch(addItem(order)) 
+     }
+    
   }
   
   return (
